@@ -219,6 +219,7 @@ html, body {
   text-align: center;
   z-index: 10;
 }
+.celebrate[hidden] { display: none; }
 .celebrate__star { font-size: 3rem; margin: 0; animation: pop .5s ease; }
 .celebrate__text { font-size: 2.4rem; font-weight: 800; color: var(--c-primary); margin: 0; }
 .celebrate__lead { font-size: 1.2rem; margin: 0; }
