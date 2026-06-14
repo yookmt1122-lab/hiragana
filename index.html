@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ひらがなパズル</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="app">
+
+    <!-- だれがあそぶ？（プロフィール選択） -->
+    <section class="screen screen--active" data-screen="profile">
+      <h1 class="screen__title">だれが あそぶ？</h1>
+      <ul class="profile-list" id="profileList"></ul>
+
+      <div class="profile-create" id="profileCreate" hidden>
+        <p class="profile-create__label">なまえと どうぶつを えらんでね</p>
+        <input class="profile-create__name" id="newName" type="text" maxlength="6" placeholder="なまえ" />
+        <div class="icon-grid" id="iconGrid"></div>
+        <button class="btn btn--primary" id="createBtn">つくる</button>
+        <button class="btn btn--ghost" id="cancelCreateBtn">やめる</button>
+      </div>
+    </section>
+
+    <!-- ぎょう えらび -->
+    <section class="screen" data-screen="home">
+      <header class="bar">
+        <button class="bar__back" data-go="profile" aria-label="もどる">◀</button>
+        <span class="bar__who" id="homeWho"></span>
+        <button class="bar__stamp" data-go="stampbook" aria-label="スタンプちょう">📖</button>
+      </header>
+      <h2 class="screen__title">どの ぎょうで あそぶ？</h2>
+      <ul class="row-list" id="rowList"></ul>
+    </section>
+
+    <!-- パズル -->
+    <section class="screen" data-screen="puzzle">
+      <header class="bar">
+        <button class="bar__back" data-go="home" aria-label="もどる">◀</button>
+        <span class="bar__progress" id="puzzleProgress"></span>
+        <button class="bar__sound" id="replayBtn" aria-label="もういちど きく">🔊</button>
+      </header>
+
+      <figure class="picture" id="picture">
+        <span class="picture__img" id="pictureImg">🐜</span>
+      </figure>
+
+      <div class="slots" id="slots"></div>
+      <div class="tray" id="tray"></div>
+
+      <!-- せいかい えんしゅつ -->
+      <div class="celebrate" id="celebrate" hidden>
+        <p class="celebrate__star">⭐️🎉⭐️</p>
+        <p class="celebrate__text">せいかい！</p>
+        <p class="celebrate__lead">スタンプを おしてね！</p>
+        <button class="stamp-btn" id="stampBtn">ペタッ</button>
+      </div>
+    </section>
+
+    <!-- スタンプちょう -->
+    <section class="screen" data-screen="stampbook">
+      <header class="bar">
+        <button class="bar__back" data-go="home" aria-label="もどる">◀</button>
+        <span class="bar__who" id="bookWho"></span>
+        <span></span>
+      </header>
+      <h2 class="screen__title">スタンプちょう</h2>
+      <div class="stampbook" id="stampbook"></div>
+    </section>
+
+  </main>
+
+  <script src="data/words.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
