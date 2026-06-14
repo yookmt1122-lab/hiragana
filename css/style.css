@@ -206,6 +206,21 @@ html, body {
 }
 .piece:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,.2); }
 
+/* ドラッグ中: 指/カーソルに付いてくる分身 */
+.piece, .slot { touch-action: none; }
+.piece--dragging { opacity: .3; }
+.piece--ghost {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;            /* 真下のマスを判定できるように */
+  transform: translate(-50%, -50%); /* 指の中心に表示 */
+  opacity: .95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slot--over { border-color: var(--c-accent); background: #e9f7ff; }
+
 /* ---- せいかい えんしゅつ ---- */
 .celebrate {
   position: fixed;

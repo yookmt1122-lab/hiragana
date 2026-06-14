@@ -213,7 +213,11 @@
     var word = state.queue[state.index];
     state.word = word;
     state.target = word.text.split("");
-    state.slots = state.target.map(function () { return null; });
+
+    // ピース（固有idつき）。slot=null はトレイ、数値はそのマスに入っている
+    state.pieces = shuffle(state.target.slice()).map(function (ch, i) {
+      return { pid: i, ch: ch, slot: null };
+    });
 
     // イラスト（今は絵文字。image があれば画像を優先）
     var img = $("#pictureImg");
@@ -222,66 +226,146 @@
 
     $("#puzzleProgress").textContent = (state.index + 1) + " / " + state.queue.length;
 
-    renderSlots();
-    renderTray(shuffle(state.target.slice()));
+    renderBoard();
     setTimeout(function () { playWord(word); }, 350);
   }
 
-  function renderSlots() {
-    var box = $("#slots");
-    box.innerHTML = "";
-    state.slots.forEach(function (ch, i) {
-      var s = el("div", "slot" + (ch ? " slot--filled" : ""));
-      s.textContent = ch || "";
-      if (ch) {
-        s.addEventListener("click", function () { removeFromSlot(i); });
-      }
-      box.appendChild(s);
-    });
+  // ---- ピース取り出しヘルパー ----
+  function pieceInSlot(i) {
+    for (var k = 0; k < state.pieces.length; k++) if (state.pieces[k].slot === i) return state.pieces[k];
+    return null;
+  }
+  function slotsFull() {
+    for (var i = 0; i < state.target.length; i++) if (!pieceInSlot(i)) return false;
+    return true;
   }
 
-  function renderTray(chars) {
+  function renderBoard() {
+    // マス
+    var box = $("#slots");
+    box.innerHTML = "";
+    for (var i = 0; i < state.target.length; i++) {
+      var p = pieceInSlot(i);
+      var s = el("div", "slot" + (p ? " slot--filled" : ""));
+      s.dataset.index = i;
+      if (p) {
+        s.textContent = p.ch;
+        attachDrag(s, p);
+      }
+      box.appendChild(s);
+    }
+    // トレイ（まだ置いていないピース）
     var tray = $("#tray");
     tray.innerHTML = "";
-    // すでにスロットに入っている分を差し引いて、残りをトレイに出す
-    var remaining = chars.slice();
-    state.slots.forEach(function (ch) {
-      if (ch) {
-        var idx = remaining.indexOf(ch);
-        if (idx !== -1) remaining.splice(idx, 1);
-      }
-    });
-    state._trayChars = chars;
-    remaining.forEach(function (ch) {
+    state.pieces.forEach(function (p) {
+      if (p.slot !== null) return;
       var b = el("button", "piece");
-      b.textContent = ch;
-      b.addEventListener("click", function () { placeChar(ch); });
+      b.textContent = p.ch;
+      attachDrag(b, p);
       tray.appendChild(b);
     });
   }
 
-  function placeChar(ch) {
-    var empty = state.slots.indexOf(null);
-    if (empty === -1) return;
-    state.slots[empty] = ch;
-    speak(ch);
-    renderSlots();
-    renderTray(state._trayChars);
-    if (state.slots.indexOf(null) === -1) checkAnswer();
+  // ============================================================
+  //  ドラッグ＆ドロップ（マウス／タッチ共通の Pointer Events）
+  //  ・軽くタップしただけ → トレイのピースは先頭の空きマスへ自動で入る
+  //  ・スロットのピースを軽くタップ → トレイに戻る
+  // ============================================================
+  var drag = null;
+
+  function attachDrag(node, piece) {
+    node.addEventListener("pointerdown", function (e) {
+      e.preventDefault();
+      var rect = node.getBoundingClientRect();
+      var ghost = el("div", "piece piece--ghost");
+      ghost.textContent = piece.ch;
+      ghost.style.width = rect.width + "px";
+      ghost.style.height = rect.height + "px";
+      document.body.appendChild(ghost);
+
+      drag = {
+        piece: piece, node: node, ghost: ghost,
+        startX: e.clientX, startY: e.clientY, moved: false
+      };
+      node.classList.add("piece--dragging");
+      moveGhost(e.clientX, e.clientY);
+      document.addEventListener("pointermove", onDragMove);
+      document.addEventListener("pointerup", onDragUp);
+    });
   }
 
-  function removeFromSlot(i) {
-    if (!state.slots[i]) return;
-    state.slots[i] = null;
-    renderSlots();
-    renderTray(state._trayChars);
+  function moveGhost(x, y) {
+    if (!drag) return;
+    drag.ghost.style.left = x + "px";
+    drag.ghost.style.top = y + "px";
+  }
+
+  function onDragMove(e) {
+    if (!drag) return;
+    if (Math.abs(e.clientX - drag.startX) > 6 || Math.abs(e.clientY - drag.startY) > 6) drag.moved = true;
+    moveGhost(e.clientX, e.clientY);
+  }
+
+  function onDragUp(e) {
+    if (!drag) return;
+    document.removeEventListener("pointermove", onDragMove);
+    document.removeEventListener("pointerup", onDragUp);
+
+    var d = drag;
+    drag = null;
+    if (d.ghost.parentNode) d.ghost.parentNode.removeChild(d.ghost);
+    d.node.classList.remove("piece--dragging");
+
+    if (!d.moved) {
+      // 軽いタップ＝ドラッグしていない → 自動で配置／戻し
+      if (d.piece.slot === null) {
+        var empty = firstEmptySlot();
+        if (empty !== -1) dropToSlot(d.piece, empty);
+      } else {
+        d.piece.slot = null;
+        finishDrop();
+      }
+      return;
+    }
+
+    // ドラッグした → 指の位置の真下を調べる
+    var el2 = document.elementFromPoint(e.clientX, e.clientY);
+    var slotEl = el2 && el2.closest ? el2.closest(".slot") : null;
+    if (slotEl) {
+      dropToSlot(d.piece, parseInt(slotEl.dataset.index, 10));
+    } else {
+      // マス以外（トレイなど）に落とした → トレイへ戻す
+      d.piece.slot = null;
+      finishDrop();
+    }
+  }
+
+  function firstEmptySlot() {
+    for (var i = 0; i < state.target.length; i++) if (!pieceInSlot(i)) return i;
+    return -1;
+  }
+
+  function dropToSlot(piece, index) {
+    var occupant = pieceInSlot(index);
+    if (occupant && occupant !== piece) {
+      occupant.slot = piece.slot; // もといた場所へ入れ替え（null=トレイ）
+    }
+    piece.slot = index;
+    speak(piece.ch);
+    finishDrop();
+  }
+
+  function finishDrop() {
+    renderBoard();
+    if (slotsFull()) checkAnswer();
   }
 
   function checkAnswer() {
     var allCorrect = true;
     var slotNodes = $("#slots").children;
     for (var i = 0; i < state.target.length; i++) {
-      if (state.slots[i] === state.target[i]) {
+      var p = pieceInSlot(i);
+      if (p && p.ch === state.target[i]) {
         slotNodes[i].classList.add("slot--correct");
       } else {
         allCorrect = false;
@@ -294,10 +378,10 @@
       // まちがえた所だけ もどす（合っている所は残す＝はげまし）
       setTimeout(function () {
         for (var i = 0; i < state.target.length; i++) {
-          if (state.slots[i] !== state.target[i]) state.slots[i] = null;
+          var p = pieceInSlot(i);
+          if (p && p.ch !== state.target[i]) p.slot = null;
         }
-        renderSlots();
-        renderTray(state._trayChars);
+        renderBoard();
       }, 600);
     }
   }
