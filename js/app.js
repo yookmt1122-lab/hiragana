@@ -7,6 +7,7 @@
 
   var DATA = window.HIRAGANA_DATA;
   var ICONS = ["🐱", "🐶", "🐰", "🐻", "🦁", "🐸", "🐼", "🦊"];
+  var SEIKAI_IMGS = ["img/seikai_inu.png", "img/seikai_kuma.png", "img/seikai_neko.png", "img/seikai_usagi.png"];
   var MAX_PROFILES = 5;
 
   // ---- ちいさなヘルパー ----
@@ -390,6 +391,8 @@
   //  せいかい → スタンプ
   // ============================================================
   function success() {
+    var rand = SEIKAI_IMGS[Math.floor(Math.random() * SEIKAI_IMGS.length)];
+    $("#celebrateChar").src = rand;
     playWord(state.word);
     $("#celebrate").hidden = false;
   }

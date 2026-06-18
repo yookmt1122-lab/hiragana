@@ -248,11 +248,22 @@ html, body {
 .celebrate::before { left: 0; }
 .celebrate::after  { right: 0; }
 .celebrate[hidden] { display: none; }
+.celebrate__top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
 .celebrate__cracker {
-  width: 120px;
+  width: 110px;
   animation: pop .45s cubic-bezier(.2,1.4,.4,1) both;
   pointer-events: none;
-  position: relative;
+}
+.celebrate__char {
+  width: 110px;
+  animation: pop .5s .1s cubic-bezier(.2,1.4,.4,1) both;
+  pointer-events: none;
 }
 .celebrate__text { font-size: 2.4rem; font-weight: 800; color: var(--c-primary); margin: 0; animation: pop .5s ease; position: relative; }
 .celebrate__lead { font-size: 1.2rem; margin: 0; position: relative; }
