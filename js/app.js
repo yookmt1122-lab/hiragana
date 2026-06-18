@@ -162,11 +162,11 @@
 
     DATA.rows.forEach(function (row) {
       var li = el("li");
-      var hasWords = row.words.length > 0;
-      var card = el("button", "row-card" + (hasWords ? "" : " row-card--locked"));
+      var unlocked = row.id === "a";
+      var card = el("button", "row-card" + (unlocked ? "" : " row-card--locked"));
       card.textContent = row.label;
 
-      if (hasWords) {
+      if (unlocked) {
         var done = row.words.filter(function (w) { return prog.cleared.indexOf(w.id) !== -1; }).length;
         var d = el("span", "row-card__done");
         d.textContent = "⭐️" + done + "/" + row.words.length;
