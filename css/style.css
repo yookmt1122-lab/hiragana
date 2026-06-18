@@ -250,19 +250,25 @@ html, body {
 .celebrate[hidden] { display: none; }
 .celebrate__top {
   display: flex;
-  align-items: flex-end;
   justify-content: center;
-  gap: 12px;
   position: relative;
 }
-.celebrate__cracker {
-  width: 110px;
-  animation: pop .45s cubic-bezier(.2,1.4,.4,1) both;
-  pointer-events: none;
+.celebrate__char-wrap {
+  position: relative;
+  display: inline-block;
 }
 .celebrate__char {
+  width: 220px;
+  display: block;
+  animation: pop .5s cubic-bezier(.2,1.4,.4,1) both;
+  pointer-events: none;
+}
+.celebrate__cracker {
+  position: absolute;
   width: 110px;
-  animation: pop .5s .1s cubic-bezier(.2,1.4,.4,1) both;
+  bottom: -10px;
+  right: -40px;
+  animation: pop .45s .1s cubic-bezier(.2,1.4,.4,1) both;
   pointer-events: none;
 }
 .celebrate__text { font-size: 2.4rem; font-weight: 800; color: var(--c-primary); margin: 0; animation: pop .5s ease; position: relative; }
