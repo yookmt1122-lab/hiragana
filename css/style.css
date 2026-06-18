@@ -248,10 +248,15 @@ html, body {
   background: transparent;
   padding: 0;
   cursor: pointer;
-  filter: drop-shadow(0 6px 0 rgba(0,0,0,.2));
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,.12));
+  animation: stamp-bounce .7s ease-in-out infinite;
 }
-.stamp-btn:active { transform: scale(.9); }
+.stamp-btn:active { transform: scale(.88); animation: none; }
 .stamp-btn__img { width: 100%; height: 100%; object-fit: contain; }
+@keyframes stamp-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
 
 /* ---- スタンプちょう ---- */
 .stampbook { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
