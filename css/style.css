@@ -234,14 +234,19 @@ html, body {
   z-index: 10;
   overflow: hidden;
 }
-.celebrate::before {
+.celebrate::before,
+.celebrate::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: url(../img/kamifubuki.png) repeat;
-  opacity: .4;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  background: url(../img/kamifubuki.png) repeat-y top center;
+  opacity: .5;
   pointer-events: none;
 }
+.celebrate::before { left: 0; }
+.celebrate::after  { right: 0; }
 .celebrate[hidden] { display: none; }
 .celebrate__cracker {
   width: 120px;
