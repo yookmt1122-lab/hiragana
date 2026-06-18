@@ -422,8 +422,8 @@
         var cell = el("div", "stamp-cell " + (done ? "stamp-cell--done" : "stamp-cell--empty"));
         if (done) {
           var si = el("img", "stamp-cell__stamp");
-          si.src = "img/stamp.png";
-          si.alt = "スタンプ";
+          si.src = w.image || "img/stamp.png";
+          si.alt = w.text;
           cell.appendChild(si);
         } else {
           cell.textContent = "・";
