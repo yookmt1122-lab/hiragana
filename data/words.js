@@ -25,30 +25,26 @@ window.HIRAGANA_DATA = {
     {
       id: "a", label: "あ行", kana: ["あ", "い", "う", "え", "お"],
       words: [
-        { id: "a-01", text: "あり",       length: 2, emoji: "🐜", illustration: "あり 虫" },
-        { id: "a-02", text: "いぬ",       length: 2, emoji: "🐶", illustration: "犬" },
-        { id: "a-03", text: "いか",       length: 2, emoji: "🦑", illustration: "イカ" },
-        { id: "a-04", text: "うし",       length: 2, emoji: "🐮", illustration: "牛" },
-        { id: "a-05", text: "うみ",       length: 2, emoji: "🌊", illustration: "海" },
-        { id: "a-06", text: "えび",       length: 2, emoji: "🦐", illustration: "エビ" },
-        { id: "a-07", text: "おに",       length: 2, emoji: "👹", illustration: "鬼" },
+        { id: "a-01", text: "あり",     length: 2, emoji: "🐜", image: "img/ari.png" },
+        { id: "a-02", text: "いぬ",     length: 2, emoji: "🐶", image: "img/inu.png" },
+        { id: "a-03", text: "いか",     length: 2, emoji: "🦑", image: "img/ika.png" },
+        { id: "a-04", text: "うし",     length: 2, emoji: "🐮", image: "img/ushi.png" },
+        { id: "a-05", text: "えび",     length: 2, emoji: "🦐", image: "img/ebi.png" },
+        { id: "a-06", text: "おに",     length: 2, emoji: "👹", image: "img/oni.png" },
 
-        { id: "a-08", text: "あひる",     length: 3, emoji: "🦆", illustration: "アヒル" },
-        { id: "a-09", text: "いちご",     length: 3, emoji: "🍓", illustration: "イチゴ" },
-        { id: "a-10", text: "いるか",     length: 3, emoji: "🐬", illustration: "イルカ" },
-        { id: "a-11", text: "うさぎ",     length: 3, emoji: "🐰", illustration: "ウサギ" },
-        { id: "a-12", text: "えほん",     length: 3, emoji: "📖", illustration: "絵本" },
-        { id: "a-13", text: "おかし",     length: 3, emoji: "🍬", illustration: "お菓子" },
-        { id: "a-14", text: "おもち",     length: 3, emoji: "🍡", illustration: "お餅" },
+        { id: "a-07", text: "あひる",   length: 3, emoji: "🦆", image: "img/ahiru.png" },
+        { id: "a-08", text: "あいす",   length: 3, emoji: "🍦", image: "img/aisu.png" },
+        { id: "a-09", text: "いちご",   length: 3, emoji: "🍓", image: "img/ichigo.png" },
+        { id: "a-10", text: "いるか",   length: 3, emoji: "🐬", image: "img/iruka.png" },
+        { id: "a-11", text: "うなぎ",   length: 3, emoji: "🐟", image: "img/unagi.png" },
 
-        { id: "a-15", text: "あさがお",   length: 4, emoji: "🌸", illustration: "朝顔" },
-        { id: "a-16", text: "いのしし",   length: 4, emoji: "🐗", illustration: "イノシシ" },
-        { id: "a-17", text: "えんぴつ",   length: 4, emoji: "✏️", illustration: "鉛筆" },
-        { id: "a-18", text: "おにぎり",   length: 4, emoji: "🍙", illustration: "おにぎり" },
+        { id: "a-12", text: "あさがお", length: 4, emoji: "🌸", image: "img/asagao.png" },
+        { id: "a-13", text: "いのしし", length: 4, emoji: "🐗", image: "img/inoshishi.png" },
+        { id: "a-14", text: "えんぴつ", length: 4, emoji: "✏️", image: "img/enpitsu.png" },
+        { id: "a-15", text: "おだんご", length: 4, emoji: "🍡", image: "img/odango.png" },
+        { id: "a-16", text: "おにぎり", length: 4, emoji: "🍙", image: "img/onigiri.png" },
 
-        { id: "a-19", text: "おばあさん",   length: 5, emoji: "👵", illustration: "おばあさん" },
-        { id: "a-20", text: "おじいさん",   length: 5, emoji: "👴", illustration: "おじいさん" },
-        { id: "a-21", text: "うちゅうじん", length: 6, emoji: "👽", illustration: "宇宙人" }
+        { id: "a-17", text: "おべんとう", length: 5, emoji: "🍱", image: "img/obentou.png" }
       ]
     },
 
