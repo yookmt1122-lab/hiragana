@@ -244,15 +244,14 @@ html, body {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  border: 6px solid #d33;
-  background: #ff5a5a;
-  color: #fff;
-  font-size: 1.8rem;
-  font-weight: 800;
+  border: none;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-  box-shadow: 0 6px 0 rgba(0,0,0,.2);
+  filter: drop-shadow(0 6px 0 rgba(0,0,0,.2));
 }
 .stamp-btn:active { transform: scale(.9); }
+.stamp-btn__img { width: 100%; height: 100%; object-fit: contain; }
 
 /* ---- スタンプちょう ---- */
 .stampbook { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -268,5 +267,6 @@ html, body {
   position: relative;
 }
 .stamp-cell__word { position: absolute; bottom: 4px; font-size: .8rem; color: #b09a78; }
+.stamp-cell__stamp { width: 70%; height: 70%; object-fit: contain; }
 .stamp-cell--done { background: #fff0df; }
 .stamp-cell--empty { opacity: .45; }

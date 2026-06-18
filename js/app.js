@@ -417,7 +417,14 @@
       row.words.forEach(function (w) {
         var done = prog.cleared.indexOf(w.id) !== -1;
         var cell = el("div", "stamp-cell " + (done ? "stamp-cell--done" : "stamp-cell--empty"));
-        cell.textContent = done ? (w.emoji || "⭐️") : "・";
+        if (done) {
+          var si = el("img", "stamp-cell__stamp");
+          si.src = "img/stamp.png";
+          si.alt = "スタンプ";
+          cell.appendChild(si);
+        } else {
+          cell.textContent = "・";
+        }
         var label = el("span", "stamp-cell__word");
         label.textContent = w.text;
         cell.appendChild(label);
