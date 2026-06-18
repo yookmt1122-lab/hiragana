@@ -14,7 +14,8 @@
   --c-slot:    #ffe9c7;
   --tap:       64px;
   --radius:    20px;
-  font-family: "Hiragino Maru Gothic ProN", "Rounded Mplus 1c", "Yu Gothic", system-ui, sans-serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 800;
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
