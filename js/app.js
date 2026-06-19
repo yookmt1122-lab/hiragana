@@ -60,6 +60,16 @@
       var p = this.progress(pid);
       if (p.cleared.indexOf(wordId) === -1) p.cleared.push(wordId);
       this.saveProgress(pid, p);
+    },
+    session: function (pid, rowId) {
+      try { return JSON.parse(localStorage.getItem("hp_sess_" + pid + "_" + rowId)) || null; }
+      catch (e) { return null; }
+    },
+    saveSession: function (pid, rowId, data) {
+      localStorage.setItem("hp_sess_" + pid + "_" + rowId, JSON.stringify(data));
+    },
+    clearSession: function (pid, rowId) {
+      localStorage.removeItem("hp_sess_" + pid + "_" + rowId);
     }
   };
 
@@ -79,6 +89,16 @@
   //  画面切り替え
   // ============================================================
   function show(name) {
+    // パズル画面から離れるとき、途中なら進捗を保存
+    var activeScreen = document.querySelector(".screen--active");
+    if (activeScreen && activeScreen.dataset.screen === "puzzle" && name !== "puzzle") {
+      if (state.profileId && state.rowId && state.queue.length > 0 && state.index < state.queue.length) {
+        Store.saveSession(state.profileId, state.rowId, {
+          queueIds: state.queue.map(function (w) { return w.id; }),
+          index: state.index
+        });
+      }
+    }
     var screens = document.querySelectorAll(".screen");
     for (var i = 0; i < screens.length; i++) {
       screens[i].classList.toggle("screen--active", screens[i].dataset.screen === name);
@@ -194,7 +214,23 @@
   function startRow(rowId) {
     state.rowId = rowId;
     var row = DATA.rows.filter(function (r) { return r.id === rowId; })[0];
-    // みじかい単語から順に（同じ長さの中はシャッフル）
+
+    // 前回の続きがあれば再開
+    var saved = Store.session(state.profileId, rowId);
+    if (saved && saved.queueIds && saved.index < saved.queueIds.length) {
+      var wordMap = {};
+      row.words.forEach(function (w) { wordMap[w.id] = w; });
+      var restoredQueue = saved.queueIds.map(function (id) { return wordMap[id]; }).filter(Boolean);
+      if (restoredQueue.length > 0 && saved.index < restoredQueue.length) {
+        state.queue = restoredQueue;
+        state.index = saved.index;
+        show("puzzle");
+        loadWord();
+        return;
+      }
+    }
+
+    // 最初から（みじかい単語から順に・同じ長さはシャッフル）
     var byLen = {};
     row.words.forEach(function (w) { (byLen[w.length] = byLen[w.length] || []).push(w); });
     var queue = [];
@@ -209,7 +245,11 @@
 
   function loadWord() {
     $("#celebrate").hidden = true;
-    if (state.index >= state.queue.length) { show("home"); return; }
+    if (state.index >= state.queue.length) {
+      Store.clearSession(state.profileId, state.rowId);
+      show("home");
+      return;
+    }
 
     var word = state.queue[state.index];
     state.word = word;
