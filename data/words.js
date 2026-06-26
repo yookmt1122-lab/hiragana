@@ -61,7 +61,7 @@ window.HIRAGANA_DATA = {
         { id: "ka-06", text: "かえる",     length: 3, emoji: "🐸", image: "img/ka/kaeru.png" },
         { id: "ka-07", text: "きつね",     length: 3, emoji: "🦊", image: "img/ka/kitsune.png" },
         { id: "ka-08", text: "きりん",     length: 3, emoji: "🦒", image: "img/ka/kirin.png" },
-        { id: "ka-09", text: "くじら",     length: 3, emoji: "🐳", image: "img/ka/jujira.png" },
+        { id: "ka-09", text: "くじら",     length: 3, emoji: "🐳", image: "img/ka/kujira.png" },
         { id: "ka-10", text: "くるま",     length: 3, emoji: "🚗", image: "img/ka/kuruma.png" },
         { id: "ka-11", text: "こたつ",     length: 3, emoji: "🛋️", image: "img/ka/kotatsu.png" },
 
@@ -77,23 +77,23 @@ window.HIRAGANA_DATA = {
     {
       id: "sa", label: "さ行", kana: ["さ", "し", "す", "せ", "そ"],
       words: [
-        { id: "sa-01", text: "さる",       length: 2, emoji: "🐒", illustration: "サル 猿" },
-        { id: "sa-02", text: "しか",       length: 2, emoji: "🦌", illustration: "シカ 鹿" },
-        { id: "sa-03", text: "すし",       length: 2, emoji: "🍣", illustration: "寿司" },
-        { id: "sa-04", text: "せみ",       length: 2, emoji: "🦗", illustration: "セミ 蝉" },
-        { id: "sa-05", text: "そら",       length: 2, emoji: "🌤️", illustration: "空 青空" },
-        { id: "sa-06", text: "さめ",       length: 2, emoji: "🦈", illustration: "サメ 鮫" },
+        { id: "sa-01", text: "さる",       length: 2, emoji: "🐒", image: "img/sa/saru.png" },
+        { id: "sa-02", text: "しか",       length: 2, emoji: "🦌", image: "img/sa/shika.png" },
+        { id: "sa-03", text: "すし",       length: 2, emoji: "🍣", image: "img/sa/sushi.png" },
+        { id: "sa-04", text: "せみ",       length: 2, emoji: "🦗", image: "img/sa/semi.png" },
+        { id: "sa-05", text: "そら",       length: 2, emoji: "🌤️", image: "img/sa/sora.png" },
+        { id: "sa-06", text: "さめ",       length: 2, emoji: "🦈", image: "img/sa/same.png" },
 
-        { id: "sa-07", text: "さかな",     length: 3, emoji: "🐟", illustration: "魚 さかな" },
-        { id: "sa-08", text: "さくら",     length: 3, emoji: "🌸", illustration: "桜 さくら" },
-        { id: "sa-09", text: "すいか",     length: 3, emoji: "🍉", illustration: "スイカ" },
-        { id: "sa-10", text: "すずめ",     length: 3, emoji: "🐦", illustration: "スズメ 雀" },
+        { id: "sa-07", text: "さかな",     length: 3, emoji: "🐟", image: "img/sa/sakana.png" },
+        { id: "sa-08", text: "さくら",     length: 3, emoji: "🌸", image: "img/sa/sakura.png" },
+        { id: "sa-09", text: "すいか",     length: 3, emoji: "🍉", image: "img/sa/suika.png" },
+        { id: "sa-10", text: "すずめ",     length: 3, emoji: "🐦", image: "img/sa/suzume.png" },
 
-        { id: "sa-11", text: "しまうま",   length: 4, emoji: "🦓", illustration: "シマウマ" },
-        { id: "sa-12", text: "しろくま",   length: 4, emoji: "🐻‍❄️", illustration: "シロクマ 白熊" },
-        { id: "sa-13", text: "そうじき",   length: 4, emoji: "🧹", illustration: "掃除機" },
+        { id: "sa-11", text: "しまうま",   length: 4, emoji: "🦓", image: "img/sa/shimauma.png" },
+        { id: "sa-12", text: "しろくま",   length: 4, emoji: "🐻‍❄️", image: "img/sa/shirokuma.png" },
+        { id: "sa-13", text: "そうじき",   length: 4, emoji: "🧹", image: "img/sa/soujiki.png" },
 
-        { id: "sa-14", text: "せんたくき", length: 5, emoji: "🫧", illustration: "洗濯機" }
+        { id: "sa-14", text: "せんたくき", length: 5, emoji: "🫧", image: "img/sa/sentakuki.png" }
       ]
     },
 

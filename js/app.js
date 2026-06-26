@@ -182,7 +182,7 @@
 
     DATA.rows.forEach(function (row) {
       var li = el("li");
-      var unlocked = row.id === "a" || row.id === "ka";
+      var unlocked = row.id === "a" || row.id === "ka" || row.id === "sa";
       var card = el("button", "row-card" + (unlocked ? "" : " row-card--locked"));
       card.textContent = row.label;
 
