@@ -52,24 +52,24 @@ window.HIRAGANA_DATA = {
     {
       id: "ka", label: "か行", kana: ["か", "き", "く", "け", "こ"],
       words: [
-        { id: "ka-01", text: "かに",       length: 2, emoji: "🦀", illustration: "カニ" },
-        { id: "ka-02", text: "かめ",       length: 2, emoji: "🐢", illustration: "カメ" },
-        { id: "ka-03", text: "くつ",       length: 2, emoji: "👟", illustration: "くつ" },
-        { id: "ka-04", text: "こい",       length: 2, emoji: "🐟", illustration: "コイ 鯉" },
-        { id: "ka-05", text: "こま",       length: 2, emoji: "🪀", illustration: "こま 独楽" },
+        { id: "ka-01", text: "かに",       length: 2, emoji: "🦀", image: "img/ka/kani.png" },
+        { id: "ka-02", text: "かめ",       length: 2, emoji: "🐢", image: "img/ka/kame.png" },
+        { id: "ka-03", text: "くつ",       length: 2, emoji: "👟", image: "img/ka/kutsu.png" },
+        { id: "ka-04", text: "こい",       length: 2, emoji: "🐟", image: "img/ka/koi.png" },
+        { id: "ka-05", text: "こま",       length: 2, emoji: "🪀", image: "img/ka/koma.png" },
 
-        { id: "ka-06", text: "かえる",     length: 3, emoji: "🐸", illustration: "カエル" },
-        { id: "ka-07", text: "きつね",     length: 3, emoji: "🦊", illustration: "キツネ" },
-        { id: "ka-08", text: "きりん",     length: 3, emoji: "🦒", illustration: "キリン" },
-        { id: "ka-09", text: "くじら",     length: 3, emoji: "🐳", illustration: "クジラ" },
-        { id: "ka-10", text: "くるま",     length: 3, emoji: "🚗", illustration: "車" },
-        { id: "ka-11", text: "こたつ",     length: 3, emoji: "🛋️", illustration: "こたつ" },
+        { id: "ka-06", text: "かえる",     length: 3, emoji: "🐸", image: "img/ka/kaeru.png" },
+        { id: "ka-07", text: "きつね",     length: 3, emoji: "🦊", image: "img/ka/kitsune.png" },
+        { id: "ka-08", text: "きりん",     length: 3, emoji: "🦒", image: "img/ka/kirin.png" },
+        { id: "ka-09", text: "くじら",     length: 3, emoji: "🐳", image: "img/ka/jujira.png" },
+        { id: "ka-10", text: "くるま",     length: 3, emoji: "🚗", image: "img/ka/kuruma.png" },
+        { id: "ka-11", text: "こたつ",     length: 3, emoji: "🛋️", image: "img/ka/kotatsu.png" },
 
-        { id: "ka-12", text: "かわうそ",   length: 4, emoji: "🦦", illustration: "カワウソ" },
-        { id: "ka-13", text: "くだもの",   length: 4, emoji: "🍎", illustration: "果物 くだもの" },
-        { id: "ka-14", text: "こうもり",   length: 4, emoji: "🦇", illustration: "コウモリ" },
+        { id: "ka-12", text: "かわうそ",   length: 4, emoji: "🦦", image: "img/ka/kawauso.png" },
+        { id: "ka-13", text: "くだもの",   length: 4, emoji: "🍎", image: "img/ka/kudamono.png" },
+        { id: "ka-14", text: "こうもり",   length: 4, emoji: "🦇", image: "img/ka/koumori.png" },
 
-        { id: "ka-15", text: "かたつむり", length: 5, emoji: "🐌", illustration: "カタツムリ" }
+        { id: "ka-15", text: "かたつむり", length: 5, emoji: "🐌", image: "img/ka/katatsumuri.png" }
       ]
     },
 
